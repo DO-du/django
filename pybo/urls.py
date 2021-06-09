@@ -1,8 +1,8 @@
-from django.contrib import admin
-from django.urls import path,include 
-from pybo import views
+from django.urls import path
+
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('pybo/',views.index),
+    path('', views.index),
+    path('<int:question_id>/', views.detail),
 ]
