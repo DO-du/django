@@ -4,5 +4,5 @@ from pybo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pybo/',views.index)
+    path('pybo/',views.index),
 ]
