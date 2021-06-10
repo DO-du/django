@@ -4,14 +4,21 @@ from django.shortcuts import render, get_object_or_404,redirect
 from .forms import QuestionForm, AnswerForm
 from .models import Question
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 
 def index(request):
     """
     pybo 목록 출력
     """
+    page = request.GET.get('page', '1')
     question_list = Question.objects.order_by('-create_date')
-    context = {'question_list': question_list}
+    paginator = Paginator(question_list, 10)  # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
+
+    
+    context = {'question_list': page_obj}
+
 
     
     return render(request, 'pybo/question_list.html', context)
